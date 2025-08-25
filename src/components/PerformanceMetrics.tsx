@@ -1,6 +1,5 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart3, DollarSign, Users, TrendingUp } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface PerformanceMetricsProps {
   apy: number;
@@ -11,57 +10,33 @@ interface PerformanceMetricsProps {
 
 const PerformanceMetrics = ({ apy, tvl, capitalDeployed, totalShares }: PerformanceMetricsProps) => {
   return (
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       <Card className="glassmorphism">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-sm text-muted-foreground">24h Performance</p>
-              <p className="text-xs text-muted-foreground">Real-time APY</p>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-success/20 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-success" />
-            </div>
-          </div>
-          <div className="space-y-1">
+        <CardContent className="p-4 sm:p-6">
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">24h Performance</p>
             <div className="text-2xl font-bold text-success">+{apy}%</div>
-            <div className="text-xs text-muted-foreground">APY: 24.5%</div>
+            <p className="text-xs text-muted-foreground">Real-time APY: 24.5%</p>
           </div>
         </CardContent>
       </Card>
 
       <Card className="glassmorphism">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-sm text-muted-foreground">Total Value Locked</p>
-              <p className="text-xs text-muted-foreground">Assets under management</p>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-primary" />
-            </div>
-          </div>
-          <div className="space-y-1">
+        <CardContent className="p-4 sm:p-6">
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">Total Value Locked</p>
             <div className="text-2xl font-bold">${(tvl / 1000000).toFixed(1)}M</div>
-            <div className="text-xs text-muted-foreground">Capital Deployed: ${(capitalDeployed / 1000000).toFixed(1)}M</div>
+            <p className="text-xs text-muted-foreground">Assets under management</p>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="glassmorphism">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-sm text-muted-foreground">Share Information</p>
-              <p className="text-xs text-muted-foreground">Current pricing</p>
-            </div>
-            <div className="w-12 h-12 rounded-full bg-warning/20 flex items-center justify-center">
-              <Users className="w-6 h-6 text-warning" />
-            </div>
-          </div>
-          <div className="space-y-1">
+      <Card className="glassmorphism sm:col-span-2 lg:col-span-1">
+        <CardContent className="p-4 sm:p-6">
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground">Share Information</p>
             <div className="text-2xl font-bold">$1.24</div>
-            <div className="text-xs text-muted-foreground">Total Shares: {(totalShares / 1000000).toFixed(1)}M</div>
+            <p className="text-xs text-muted-foreground">Current pricing • {(totalShares / 1000000).toFixed(1)}M shares</p>
           </div>
         </CardContent>
       </Card>

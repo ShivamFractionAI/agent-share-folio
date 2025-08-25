@@ -56,16 +56,18 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
   }
 }
 
 @layer components {
   .trading-card {
-    @apply bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6;
+    @apply bg-card/50 backdrop-blur-sm border border-border rounded-xl p-4 sm:p-6;
   }
   
   .metric-card {
-    @apply bg-secondary/30 border border-border/50 rounded-lg p-4 backdrop-blur-sm;
+    @apply bg-secondary/30 border border-border/50 rounded-lg p-3 sm:p-4 backdrop-blur-sm;
   }
   
   .buy-button {
@@ -88,5 +90,20 @@
   
   .glassmorphism {
     @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .container {
+      @apply px-3;
+    }
+    
+    .trading-card {
+      @apply p-3;
+    }
+    
+    .metric-card {
+      @apply p-2.5;
+    }
   }
 }

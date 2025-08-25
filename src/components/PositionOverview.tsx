@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, Wallet, Target, DollarSign } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 interface PositionOverviewProps {
   position: {
@@ -18,35 +18,34 @@ const PositionOverview = ({ position, currentPrice }: PositionOverviewProps) => 
 
   return (
     <Card className="trading-card">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Wallet className="w-5 h-5 text-primary" />
-          Your Position
-        </CardTitle>
+      <CardHeader className="pb-4">
+        <CardTitle className="text-lg sm:text-xl">Your Position</CardTitle>
         <p className="text-sm text-muted-foreground">Current holdings in this agent</p>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div className="metric-card">
-            <div className="text-sm text-muted-foreground mb-1">Shares Owned</div>
-            <div className="text-2xl font-bold">{position.sharesOwned.toLocaleString()}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1">Shares Owned</div>
+            <div className="text-lg sm:text-2xl font-bold">{position.sharesOwned.toLocaleString()}</div>
           </div>
           
           <div className="metric-card">
-            <div className="text-sm text-muted-foreground mb-1">Avg Buy Price</div>
-            <div className="text-2xl font-bold">${position.avgBuyPrice}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1">Avg Buy Price</div>
+            <div className="text-lg sm:text-2xl font-bold">${position.avgBuyPrice}</div>
           </div>
           
           <div className="metric-card">
-            <div className="text-sm text-muted-foreground mb-1">Current Value</div>
-            <div className="text-2xl font-bold">${position.currentValue.toLocaleString()}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1">Current Value</div>
+            <div className="text-lg sm:text-2xl font-bold">${position.currentValue.toLocaleString()}</div>
           </div>
           
           <div className="metric-card">
-            <div className="text-sm text-muted-foreground mb-1">P&L</div>
-            <div className={`text-2xl font-bold flex items-center gap-1 ${isProfitable ? 'text-success' : 'text-destructive'}`}>
-              <TrendingUp className="w-5 h-5" />
-              {isProfitable ? '+' : ''}${position.pnl} ({isProfitable ? '+' : ''}{position.pnlPercentage}%)
+            <div className="text-xs sm:text-sm text-muted-foreground mb-1">P&L</div>
+            <div className={`text-lg sm:text-2xl font-bold flex items-center gap-1 ${isProfitable ? 'text-success' : 'text-destructive'}`}>
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="break-all">
+                {isProfitable ? '+' : ''}${position.pnl} ({isProfitable ? '+' : ''}{position.pnlPercentage}%)
+              </span>
             </div>
           </div>
         </div>
