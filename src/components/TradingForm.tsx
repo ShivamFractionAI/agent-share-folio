@@ -27,6 +27,16 @@ const TradingForm = ({ currentPrice, userShares }: TradingFormProps) => {
     return sharesNum * currentPrice;
   };
 
+  const addToBuyAmount = (addition: number) => {
+    const currentAmount = parseFloat(buyAmount) || 0;
+    setBuyAmount((currentAmount + addition).toString());
+  };
+
+  const setMaxBuyAmount = () => {
+    // Assuming user has $10000 available for demo purposes
+    setBuyAmount('10000');
+  };
+
   return (
     <Card className="trading-card">
       <CardHeader className="pb-4">
@@ -57,6 +67,42 @@ const TradingForm = ({ currentPrice, userShares }: TradingFormProps) => {
                   onChange={(e) => setBuyAmount(e.target.value)}
                   className="text-base sm:text-lg"
                 />
+              </div>
+
+              {/* Quick Amount Buttons */}
+              <div className="grid grid-cols-4 gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => addToBuyAmount(1)}
+                  className="text-xs"
+                >
+                  +$1
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => addToBuyAmount(10)}
+                  className="text-xs"
+                >
+                  +$10
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => addToBuyAmount(100)}
+                  className="text-xs"
+                >
+                  +$100
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={setMaxBuyAmount}
+                  className="text-xs"
+                >
+                  Max
+                </Button>
               </div>
               
               {buyAmount && (

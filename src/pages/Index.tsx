@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import PriceChart from '@/components/PriceChart';
+import ProfitChart from '@/components/ProfitChart';
 import TradingForm from '@/components/TradingForm';
 import PositionOverview from '@/components/PositionOverview';
 import PerformanceMetrics from '@/components/PerformanceMetrics';
@@ -81,10 +82,10 @@ const Index = () => {
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Left Column - Position & Performance (spans 3 cols on xl) */}
           <div className="xl:col-span-3 space-y-6">
-            {/* Position Overview - always on top */}
+            {/* Position Overview */}
             <PositionOverview position={agentData.userPosition} currentPrice={agentData.currentPrice} />
             
-            {/* Performance Metrics - simplified for mobile */}
+            {/* Performance Metrics */}
             <PerformanceMetrics 
               apy={agentData.apy}
               tvl={agentData.totalValueLocked}
@@ -92,7 +93,20 @@ const Index = () => {
               totalShares={agentData.totalShares}
             />
             
-            {/* Price Chart */}
+            {/* Your Profit Chart */}
+            <Card className="trading-card">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-lg sm:text-xl">Your Profit Over Time</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ProfitChart 
+                  userPosition={agentData.userPosition}
+                  currentPrice={agentData.currentPrice}
+                />
+              </CardContent>
+            </Card>
+            
+            {/* Share Price Chart */}
             <Card className="trading-card">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg sm:text-xl">Share Price Over Time</CardTitle>
@@ -103,7 +117,7 @@ const Index = () => {
             </Card>
           </div>
 
-          {/* Right Column - Trading (spans 1 col on xl, full width on smaller) */}
+          {/* Right Column - Trading */}
           <div className="xl:col-span-1 order-first xl:order-last">
             <div className="xl:sticky xl:top-6">
               <TradingForm 
