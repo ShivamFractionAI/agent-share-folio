@@ -1,11 +1,9 @@
-
 import { useState } from 'react';
 import { ArrowLeft, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import PriceChart from '@/components/PriceChart';
-import ProfitChart from '@/components/ProfitChart';
 import TradingForm from '@/components/TradingForm';
 import PositionOverview from '@/components/PositionOverview';
 import PerformanceMetrics from '@/components/PerformanceMetrics';
@@ -82,7 +80,7 @@ const Index = () => {
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Left Column - Position & Performance (spans 3 cols on xl) */}
           <div className="xl:col-span-3 space-y-6">
-            {/* Position Overview */}
+            {/* Position Overview with Profit Chart */}
             <PositionOverview position={agentData.userPosition} currentPrice={agentData.currentPrice} />
             
             {/* Performance Metrics */}
@@ -92,19 +90,6 @@ const Index = () => {
               capitalDeployed={agentData.capitalDeployed}
               totalShares={agentData.totalShares}
             />
-            
-            {/* Your Profit Chart */}
-            <Card className="trading-card">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-lg sm:text-xl">Your Profit Over Time</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ProfitChart 
-                  userPosition={agentData.userPosition}
-                  currentPrice={agentData.currentPrice}
-                />
-              </CardContent>
-            </Card>
             
             {/* Share Price Chart */}
             <Card className="trading-card">

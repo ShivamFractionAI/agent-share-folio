@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp } from 'lucide-react';
+import ProfitChart from './ProfitChart';
 
 interface PositionOverviewProps {
   position: {
@@ -22,7 +23,7 @@ const PositionOverview = ({ position, currentPrice }: PositionOverviewProps) => 
         <CardTitle className="text-lg sm:text-xl">Your Position</CardTitle>
         <p className="text-sm text-muted-foreground">Current holdings in this agent</p>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div className="metric-card">
             <div className="text-xs sm:text-sm text-muted-foreground mb-1">Shares Owned</div>
@@ -48,6 +49,15 @@ const PositionOverview = ({ position, currentPrice }: PositionOverviewProps) => 
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Your Profit Over Time Chart */}
+        <div>
+          <h3 className="text-base sm:text-lg font-semibold mb-4">Your Profit Over Time</h3>
+          <ProfitChart 
+            userPosition={position}
+            currentPrice={currentPrice}
+          />
         </div>
       </CardContent>
     </Card>
